@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "bonsai"
+version = "0.1.0"
+description = "Stacked commits for Git and GitHub"
+authors = ["Sean Gillespie <sean@swgillespie.me>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.7"
+rich = "^13.7.0"
+pygit2 = "^1.13.3"
+inquirer = "^3.1.4"
+
+
+[tool.poetry.group.dev.dependencies]
+mypy = "^1.7.1"
+black = "^23.11.0"
+pytest = "^7.4.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
