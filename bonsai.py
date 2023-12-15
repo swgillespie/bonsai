@@ -51,9 +51,18 @@ def up() -> None:
     """
     Move upwards to the next commit in the stack.
     """
-    git("checkout", "HEAD@{1}")
-    branch = resolve_commit_to_branch("HEAD")
-    git("checkout", branch)
+    candidate_branches = []
+    for branch in get_tracked_branches():
+        commits = git("rev-list", "--reverse", "--topo-order", "--ancestry-path", f"HEAD..{branch}").splitlines()
+        if len(commits) > 0:
+            candidate_branches.append((branch, commits[0]))
+    if not len(candidate_branches):
+        print("Unable to find a parent commit to move to - is your current stack tracked?")
+    elif len(candidate_branches) == 1:
+        _, commit = candidate_branches[0]
+        git("checkout", resolve_commit_to_branch(commit))
+    else:
+        print(candidate_branches)
 
 @main.command()
 def down() -> None:
