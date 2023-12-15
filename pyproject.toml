@@ -10,7 +10,6 @@ readme = "README.md"
 python = "^3.10"
 click = "^8.1.7"
 rich = "^13.7.0"
-pygit2 = "^1.13.3"
 inquirer = "^3.1.4"
 
 
